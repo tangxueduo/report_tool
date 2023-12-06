@@ -1,0 +1,67 @@
+[tool.poetry]
+name = "report_tool"
+version = "1.0.0"
+description = "\"\""
+authors = ["Your Name <you@example.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "report_tool"}]
+
+[tool.poetry.dependencies]
+python = "3.7.5"
+numpy = "1.20.1"
+pydicom = "2.3"
+loguru = ">=0.6.0"
+pillow = "^9.0.1"
+pydantic = "<2.0"
+
+
+
+[[tool.poetry.source]]
+name = "infervision"
+url = "https://repos.infervision.com/repository/pypi/simple"
+priority = "primary"
+
+[[tool.poetry.source]]
+name = "aliyun"
+url = "http://mirrors.aliyun.com/pypi/simple"
+priority = "default"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "6.2.5"
+isort = "5.6.4"
+black = "20.8b1"
+pre-commit = "^2.21"
+flake8 = "3.8.4"
+mypy = "^1.0"
+click = "8.0.4"
+commitizen = "3.9.1"
+# flake8 需要 importlib-metadata<5.0, 去掉的话执行会报错
+importlib-metadata = "<5.0"
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+tag_format = "$version"
+version_scheme = "semver"
+version_provider = "poetry"
+update_changelog_on_bump = true
+major_version_zero = false
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+profile = "black"
+
+[tool.mypy]
+python_version = 3.7
+strict = true
+ignore_missing_imports = true
+disallow_any_generics = false
+disallow_untyped_calls = false
+no_implicit_optional = true
+warn_return_any = false
+implicit_reexport = true
+allow_redefinition = true
+plugins = "pydantic.mypy"
