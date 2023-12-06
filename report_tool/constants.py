@@ -11,11 +11,12 @@ class ReportImageType(Enum):
 
 
 # Report Image request structure
-# TODO: 这里面的字段应该在不同产品线里面做到字段兼容
 class ImageItem(BaseModel):
+    """其他产线应采用继承或者其他方式，满足这个structure"""
+
     series_iuid: str = ""
     image: str = ""  # base64 encode png
-    predict_type: str = ""  # ct_bmd
+    product: str = ""  # ct_bmd, mr_head
     target: Union[str, List[str]]  # 图像应用场景， 包括 report, film. 用 , 间隔表示支持多种使用场景
     report_image_type: ReportImageType  # 图文报告中图像分类, 包括 preset, screenshot, upload
     option: Any = None  # 前端用于记录图像信息, 仅用于图文报告
@@ -65,3 +66,9 @@ REPACS_HOST = "repacs"
 REPACS_PORT = 3333
 FONT_SIZE = 15
 UNVALIDATED_AE_TITLES = ""
+
+# 不同产品线对应的feedback /series feedback/film 接口result type
+PRODUCT_SSR_RESULT_TYPE = {
+    "ct_bmd": ["", ""],  # film, series
+    "mr_head": ["feedback/v1/mr_head_film_images", "feedback/v1/mr_head_series_images"],
+}
