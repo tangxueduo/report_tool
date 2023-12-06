@@ -14,6 +14,13 @@ from report_tool.report import _base64_to_report
 
 __version__ = "1.0.0"
 
+# TODO @txueduo:
+"""
+    DATA_PATH 获取?
+    是否需要test?
+    我司pip封装是否有其他注意事项
+"""
+
 
 def b642png(item: ImageItem) -> None:
     """convert base64 to png"""
