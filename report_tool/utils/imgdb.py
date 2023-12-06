@@ -49,7 +49,6 @@ class ImageDB:
             os.remove(file_path)
 
 
-# TODO : DATA_PATH 由os.getenv()获取？
 def abs_to_rel(path: str, ref: str = DATA_PATH) -> str:
     """Absolute path to relative path"""
     return path.replace(os.path.realpath(ref), "").strip("/")
